@@ -1,0 +1,42 @@
+div.container {
+    padding: 1em;
+}
+
+div.header {
+    background-color: cornflowerblue;
+    border-bottom: 0.5rem burlywood solid;
+    padding: 0.25rem 0 0 0.5rem;
+}
+
+div.content {
+    background-color: lightblue;
+    padding: 0.5rem;
+}
+
+mat-form-field#emp-id {
+    width: 40%;
+}
+
+td.fname {
+    font-size: 1.3rem;
+    color: darkblue;
+    padding: 0.2rem;
+    padding-right: 0.5rem;
+}
+
+td.fvalue {
+    font-size: 1.2rem;
+    padding: 0.2rem;
+}
+
+table.amounts {
+    width: 100%;
+}
+
+td.amount-cell {
+    text-align: center;
+}
+
+mat-form-field.form-field {
+    width: 90%;
+}
