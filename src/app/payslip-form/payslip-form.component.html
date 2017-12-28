@@ -7,7 +7,7 @@
     <form>
       
       <mat-form-field id="emp-id">
-        <mat-select placeholder="Select employee ID:" [(ngModel)]="selectedEmployee" name="employee">
+        <mat-select placeholder="Select employee ID:" [(ngModel)]="selectedEmployee" name="employee" (change)="loadValues(); updateValues();">
           <mat-option>None</mat-option>
           <mat-option *ngFor="let employee of employees" [value]="employee">{{ employee.emp_id }}</mat-option>
         </mat-select>
@@ -40,27 +40,13 @@
           <td class="amount-cell">
             <mat-form-field class="form-field">
               <span matPrefix>&#8377; &nbsp;</span>
-              <input matInput type="number" placeholder="Basic" [(ngModel)]="basic" name="basic" (input)="updateValues()"/>
+              <input matInput type="number" placeholder="Basic" [(ngModel)]="amountHolder.basic" name="basic" (input)="updateValues()"/>
             </mat-form-field>
           </td>
           <td class="amount-cell">
             <mat-form-field class="form-field">
               <span matPrefix>&#8377; &nbsp;</span>
-              <input matInput type="number" placeholder="Loyalty" [(ngModel)]="loyalty" name="loyalty" (input)="updateValues()"/>
-            </mat-form-field>
-          </td>
-        </tr>
-        <tr>
-          <td class="amount-cell">
-            <mat-form-field class="form-field">
-              <span matPrefix>&#8377; &nbsp;</span>
-              <input matInput type="number" placeholder="DA" [(ngModel)]="da" name="da" (input)="updateValues()"/>
-            </mat-form-field>
-          </td>
-          <td class="amount-cell">
-            <mat-form-field class="form-field">
-              <span matPrefix>&#8377; &nbsp;</span>
-              <input matInput type="number" placeholder="Accomp" [(ngModel)]="accomp" name="accomp" (input)="updateValues()"/>
+              <input matInput type="number" placeholder="Loyalty" [(ngModel)]="amountHolder.loyalty" name="loyalty" (input)="updateValues()"/>
             </mat-form-field>
           </td>
         </tr>
@@ -68,27 +54,13 @@
           <td class="amount-cell">
             <mat-form-field class="form-field">
               <span matPrefix>&#8377; &nbsp;</span>
-              <input matInput type="number" placeholder="Con. Allowance" [(ngModel)]="conAllowance" name="conAllowance" (input)="updateValues()"/>
+              <input matInput type="number" placeholder="DA" [(ngModel)]="amountHolder.da" name="da" (input)="updateValues()"/>
             </mat-form-field>
           </td>
           <td class="amount-cell">
             <mat-form-field class="form-field">
               <span matPrefix>&#8377; &nbsp;</span>
-              <input matInput type="number" placeholder="Arrears" [(ngModel)]="arrears" name="arrears" (input)="updateValues()"/>
-            </mat-form-field>
-          </td>
-        </tr>
-        <tr>
-          <td class="amount-cell">
-            <mat-form-field class="form-field">
-              <span matPrefix>&#8377; &nbsp;</span>
-              <input matInput type="number" placeholder="Med. Allowance" [(ngModel)]="medAllowance" name="medAllowance" (input)="updateValues()"/>
-            </mat-form-field>
-          </td>
-          <td class="amount-cell">
-            <mat-form-field class="form-field">
-              <span matPrefix>&#8377; &nbsp;</span>
-              <input matInput type="number" placeholder="TDS" [(ngModel)]="tds" name="tds" (input)="updateValues()"/>
+              <input matInput type="number" placeholder="Accomp" [(ngModel)]="amountHolder.accomp" name="accomp" (input)="updateValues()"/>
             </mat-form-field>
           </td>
         </tr>
@@ -96,27 +68,13 @@
           <td class="amount-cell">
             <mat-form-field class="form-field">
               <span matPrefix>&#8377; &nbsp;</span>
-              <input matInput type="number" placeholder="Tel. Allowance" [(ngModel)]="telAllowance" name="telAllowance" (input)="updateValues()"/>
+              <input matInput type="number" placeholder="Con. Allowance" [(ngModel)]="amountHolder.conAllowance" name="conAllowance" (input)="updateValues()"/>
             </mat-form-field>
           </td>
           <td class="amount-cell">
             <mat-form-field class="form-field">
               <span matPrefix>&#8377; &nbsp;</span>
-              <input matInput type="number" placeholder="Prof. tax" [(ngModel)]="profTax" name="profTax" (input)="updateValues()"/>
-            </mat-form-field>
-          </td>
-        </tr>
-        <tr>
-          <td class="amount-cell">
-            <mat-form-field class="form-field">
-              <span matPrefix>&#8377; &nbsp;</span>
-              <input matInput type="number" placeholder="Sp. Allowance" [(ngModel)]="spAllowance" name="spAllowance" (input)="updateValues()"/>
-            </mat-form-field>
-          </td>
-          <td class="amount-cell">
-            <mat-form-field class="form-field">
-              <span matPrefix>&#8377; &nbsp;</span>
-              <input matInput type="number" placeholder="Adv." [(ngModel)]="adv" name="adv" (input)="updateValues()"/>
+              <input matInput type="number" placeholder="Arrears" [(ngModel)]="amountHolder.arrears" name="arrears" (input)="updateValues()"/>
             </mat-form-field>
           </td>
         </tr>
@@ -124,13 +82,13 @@
           <td class="amount-cell">
             <mat-form-field class="form-field">
               <span matPrefix>&#8377; &nbsp;</span>
-              <input matInput type="number" placeholder="Internet Allowance" [(ngModel)]="internetAllowance" name="internetAllowance" (input)="updateValues()"/>
+              <input matInput type="number" placeholder="Med. Allowance" [(ngModel)]="amountHolder.medAllowance" name="medAllowance" (input)="updateValues()"/>
             </mat-form-field>
           </td>
           <td class="amount-cell">
             <mat-form-field class="form-field">
               <span matPrefix>&#8377; &nbsp;</span>
-              <input matInput type="number" placeholder="Other" [(ngModel)]="other" name="other" (input)="updateValues()"/>
+              <input matInput type="number" placeholder="TDS" [(ngModel)]="amountHolder.tds" name="tds" (input)="updateValues()"/>
             </mat-form-field>
           </td>
         </tr>
@@ -138,7 +96,49 @@
           <td class="amount-cell">
             <mat-form-field class="form-field">
               <span matPrefix>&#8377; &nbsp;</span>
-              <input matInput type="number" placeholder="Maintenance" [(ngModel)]="maintenance" name="maintenance" (input)="updateValues()"/>
+              <input matInput type="number" placeholder="Tel. Allowance" [(ngModel)]="amountHolder.telAllowance" name="telAllowance" (input)="updateValues()"/>
+            </mat-form-field>
+          </td>
+          <td class="amount-cell">
+            <mat-form-field class="form-field">
+              <span matPrefix>&#8377; &nbsp;</span>
+              <input matInput type="number" placeholder="Prof. tax" [(ngModel)]="amountHolder.profTax" name="profTax" (input)="updateValues()"/>
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td class="amount-cell">
+            <mat-form-field class="form-field">
+              <span matPrefix>&#8377; &nbsp;</span>
+              <input matInput type="number" placeholder="Sp. Allowance" [(ngModel)]="amountHolder.spAllowance" name="spAllowance" (input)="updateValues()"/>
+            </mat-form-field>
+          </td>
+          <td class="amount-cell">
+            <mat-form-field class="form-field">
+              <span matPrefix>&#8377; &nbsp;</span>
+              <input matInput type="number" placeholder="Adv." [(ngModel)]="amountHolder.adv" name="adv" (input)="updateValues()"/>
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td class="amount-cell">
+            <mat-form-field class="form-field">
+              <span matPrefix>&#8377; &nbsp;</span>
+              <input matInput type="number" placeholder="Internet Allowance" [(ngModel)]="amountHolder.internetAllowance" name="internetAllowance" (input)="updateValues()"/>
+            </mat-form-field>
+          </td>
+          <td class="amount-cell">
+            <mat-form-field class="form-field">
+              <span matPrefix>&#8377; &nbsp;</span>
+              <input matInput type="number" placeholder="Other" [(ngModel)]="amountHolder.other" name="other" (input)="updateValues()"/>
+            </mat-form-field>
+          </td>
+        </tr>
+        <tr>
+          <td class="amount-cell">
+            <mat-form-field class="form-field">
+              <span matPrefix>&#8377; &nbsp;</span>
+              <input matInput type="number" placeholder="Maintenance" [(ngModel)]="amountHolder.maintenance" name="maintenance" (input)="updateValues()"/>
             </mat-form-field>
           </td>
           <td class="amount-cell"></td>
@@ -148,27 +148,27 @@
       <table>
         <tr>
           <td class="fname">HRA</td>
-          <td class="fvalue">: &nbsp;<span matPrefix>&#8377; &nbsp;</span>{{ hra }}</td>
+          <td class="fvalue">: &nbsp;<span matPrefix>&#8377; &nbsp;</span>{{ amountHolder.hra }}</td>
         </tr>
         <tr>
           <td class="fname">Regular</td>
-          <td class="fvalue">: &nbsp;<span matPrefix>&#8377; &nbsp;</span>{{ regular }}</td>
+          <td class="fvalue">: &nbsp;<span matPrefix>&#8377; &nbsp;</span>{{ amountHolder.regular }}</td>
         </tr>
         <tr>
           <td class="fname">PF</td>
-          <td class="fvalue">: &nbsp;<span matPrefix>&#8377; &nbsp;</span>{{ pf }}</td>
+          <td class="fvalue">: &nbsp;<span matPrefix>&#8377; &nbsp;</span>{{ amountHolder.pf }}</td>
         </tr>
         <tr>
           <td class="fname">Monthly Gross</td>
-          <td class="fvalue">: &nbsp;<span matPrefix>&#8377; &nbsp;</span>{{ monthlyGross }}</td>
+          <td class="fvalue">: &nbsp;<span matPrefix>&#8377; &nbsp;</span>{{ amountHolder.monthlyGross }}</td>
         </tr>
         <tr>
           <td class="fname">Total</td>
-          <td class="fvalue">: &nbsp;<span matPrefix>&#8377; &nbsp;</span>{{ total }}</td>
+          <td class="fvalue">: &nbsp;<span matPrefix>&#8377; &nbsp;</span>{{ amountHolder.total }}</td>
         </tr>
         <tr>
           <td class="fname">Monthly Net</td>
-          <td class="fvalue">: &nbsp;<span matPrefix>&#8377; &nbsp;</span>{{ monthlyNet }}</td>
+          <td class="fvalue">: &nbsp;<span matPrefix>&#8377; &nbsp;</span>{{ amountHolder.monthlyNet }}</td>
         </tr>
       </table>
     </form>
